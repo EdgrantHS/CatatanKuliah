@@ -79,8 +79,8 @@ let $x(t) = x_{r}(t) + jx_{i}(t)$
 
 $y(t) = x(at + b)$
 
-1. Time Shifting ($v(t) = x(t + b)$)
-2. Time Scaling ($y(t) = v(at)$)
+1. Time Shifting ( $v(t) = x(t + b)$ )
+2. Time Scaling ( $y(t) = v(at)$ )
 
 ### Elementary Signals
 
