@@ -237,7 +237,7 @@ $$p'(t) = p'(in) - p'(out)$$
 ### Contoh
 
 	- population proposional 
-$ p(t+1) = r \cdot p(t)$
+$p(t+1) = r \cdot p(t)$
 $P = (rP +15) - (20+10)$
 $P = rP -15$
 $P(10) = 100$
@@ -411,7 +411,7 @@ $$L(f(t)) = \int_0^\infty e^{-st}f(t)dt$$
 
 Converrt to limit  
 
-- $\lim_{a \to \infty} \int_0^a e^{ct}dt$  
+- $\lim_{a \to \infty} \int_0^a e^{ct}dt$
 Evaluete the eexpreton
 - $\lim_{a \to \infty} \frac{e^{ct}}{c} \Big|_0^a$
 - $\lim_{a \to \infty} \frac{e^{ca}}{c} - \frac{e^{c0}}{c}$
@@ -529,11 +529,11 @@ $a_0$ = dc bias
 
 - $$\nu = \frac{\pi}{L}x$$ Koefisien penyama
 
-- $$ L = \frac{1}{2}\ Periode$$
+- $$L = \frac{1}{2}\ Periode$$
 
-- $$ a_0 = \frac{1}{L}\int^{L}_{-L} f(x) dx$$
-- $$ a_n = \frac{1}{L}\int^{L}_{-L} f(x) cos\ \frac{n \pi}{L}x dx$$
-- $$ b_n = \frac{1}{L}\int^{L}_{-L} f(x) sin\ \frac{n \pi}{L}x dx$$
+- $$a_0 = \frac{1}{L}\int^{L}_{-L} f(x) dx$$
+- $$a_n = \frac{1}{L}\int^{L}_{-L} f(x) cos\ \frac{n \pi}{L}x dx$$
+- $$b_n = \frac{1}{L}\int^{L}_{-L} f(x) sin\ \frac{n \pi}{L}x dx$$
 
 ## Even Edd Function (Week 2)
 
@@ -640,7 +640,7 @@ Odd function half range extension
 ### Sifat
 
 - Linearity
-  - $ \alpha f(x) + \beta g(x) \rightarrow \alpha F(\omega) + \beta G(\omega)$
+  - $\alpha f(x) + \beta g(x) \rightarrow \alpha F(\omega) + \beta G(\omega)$
 - Time Shifting
   - $f(x - x_0) \rightarrow e^{-i\omega x_0} F(\omega)$
 - Frequency Shifting
