@@ -4,7 +4,7 @@
 
 ## Penulis:
 
-**Nama:** Edgrant Henderson Suryajaya 
+**Nama:** Edgrant Henderson Suryajaya  
 **Jurusan:** Teknik Komputer - 2022  
 **Universitas:** Universitas Indonesia
 
