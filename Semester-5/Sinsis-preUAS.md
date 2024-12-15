@@ -192,7 +192,7 @@ $F(s) = \frac{1}{s(s+2)}$
 ##### Cara Initial Value Theorem
 
 - $lim_{s \to \infty} sF(s)$
-- $lim_{s \to \infty} s\frac{1}{s(s+2)}$ 
+- $lim_{s \to \infty} s\frac{1}{s(s+2)}$
 - $lim_{s \to \infty} \frac{1}{s+2} = 0$
 
 ### Final Value Theorem
@@ -427,3 +427,111 @@ dan sebaliknya
 
 - $y(t) = x(t)*h(t)$
 - $Y(j\omega) = X(j\omega)H(j\omega)$
+
+## DFT (Week 5)
+
+### DTFT
+
+- $X(e^{j\omega}) = \sum^\infty_n x[n]e^{-j\omega n}$
+- $x[n] = \frac{1}{2\pi}\int^{\pi}_{-\pi} X(e^{j\omega})e^{j\omega n}d\omega$
+
+#### Contoh
+
+- $x[n] = a^n u[n]$
+- $X(e^{j\omega}) = \sum^\infty_{-\infty} a^n u[n]e^{-j\omega n}$
+- $X(e^{j\omega}) = \sum^\infty_0 a^n e^{-j\omega n}$
+- $X(e^{j\omega}) = \sum^\infty_0 (ae^{-j\omega})^n$
+- $X(e^{j\omega}) = \frac{1}{1-ae^{-j\omega}}$ (geometric series)
+
+#### Contoh 2
+
+- $x[n] = 2 (3)^n u[-n]$
+- $X(e^{j\omega}) = \sum^\infty_{-\infty} 2 (3)^n u[-n]e^{-j\omega n}$
+- $X(e^{j\omega}) = \sum^0_{-\infty} 2 (3)^n e^{-j\omega n}$
+- $X(e^{j\omega}) = \sum^0_{-\infty} 2 (3e^{-j\omega})^n$
+- $X(e^{j\omega}) = \sum^\infty_0 2 (3e^{-j\omega})^{-n}$
+- $X(e^{j\omega}) = \frac{2}{1-e^{-j\omega}/3}$
+
+### DFT
+
+- Sampling DTFT
+- $X[k] = \sum^{N-1}_{n=0} x[n]e^{-j\frac{2\pi}{N}kn}$
+- $x[n] = \frac{1}{N}\sum^{N-1}_{k=0} X[k]e^{j\frac{2\pi}{N}kn}$
+
+#### Example
+
+Persamaan awal
+
+- $x_1[n] = \begin{bmatrix} 1 \\ 1 \\ 1 \\ 1 \end{bmatrix}$
+- $x_2[n] = \begin{bmatrix} 1 \\ 0 \\ 1 \\ 0 \end{bmatrix}$
+
+DFT
+
+- $X_1[k] = \sum^{3}_{n=0} x_1[n]e^{-j\frac{2\pi}{4}kn}$
+- $X_1[k] = x[0]e^0 + x[1]e^{-j\frac{\pi}{2}k} + x[2]e^{-j\pi k} + x[3]e^{-j\frac{3\pi}{2}k}$
+- $X_1[0] = x[0]e^0 + x[1]e^0 + x[2]e^0 + x[3]e^0 = 4$
+- $X_1[1] = x[0]e^0 + x[1]e^{-j\frac{\pi}{2}} + x[2]e^{-j\pi} + x[3]e^{-j\frac{3\pi}{2}} = 0$
+- $X_1[2] = x[0]e^0 + x[1]e^{-j\pi} + x[2]e^{-j2\pi} + x[3]e^{-j3\pi} = 0$
+- $X_1[3] = x[0]e^0 + x[1]e^{-j\frac{3\pi}{2}} + x[2]e^{-j3\pi} + x[3]e^{-j\frac{9\pi}{2}} = 0$
+
+> Representasi Matrix (Rumus Umum)
+>
+> $\begin{bmatrix} X[0] \\ X[1] \\ X[2] \\ X[3] \end{bmatrix} = \begin{bmatrix} 1 & 1 & 1 & 1 \\ 1 & -j & -1 & j \\ 1 & -1 & 1 & -1 \\ 1 & j & -1 & -j \end{bmatrix} \begin{bmatrix} x[0] \\ x[1] \\ x[2] \\ x[3] \end{bmatrix}$
+
+Soal 2
+
+- $X_2[k] = \sum^{3}_{n=0} x_2[n]e^{-j\frac{2\pi}{4}kn}$
+- $\begin{bmatrix} X_2[0] \\ X_2[1] \\ X_2[2] \\ X_2[3] \end{bmatrix} = \begin{bmatrix} 1 & 1 & 1 & 1 \\ 1 & -j & -1 & j \\ 1 & -1 & 1 & -1 \\ 1 & j & -1 & -j \end{bmatrix} \begin{bmatrix} 1 \\ 0 \\ 1 \\ 0 \end{bmatrix} = \begin{bmatrix} 2 \\ 0 \\ 2 \\ 0 \end{bmatrix}$
+
+### FFT
+
+- Fast Fourier Transform (Fast DFT)
+- DFT Simetrik dan periodik
+- $X[k] = \sum^{N-1}_{n=0} x[n]W_N^{kn}$
+- $W_N = e^{-j\frac{2\pi}{N}}$
+
+#### Matrix
+
+- $W_4 = e^{-j\frac{2\pi}{4}} = e^{-j\frac{\pi}{2}} = -j$
+- $\begin{bmatrix} W_4^0 & W_4^0 & W_4^0 & W_4^0 \\ W_4^0 & W_4^1 & W_4^2 & W_4^3 \\ W_4^0 & W_4^2 & W_4^4 & W_4^6 \\ W_4^0 & W_4^3 & W_4^6 & W_4^9 \end{bmatrix} = \begin{bmatrix} 1 & 1 & 1 & 1 \\ 1 & -j & -1 & j \\ 1 & -1 & 1 & -1 \\ 1 & j & -1 & -j \end{bmatrix}$
+- Periodik
+- $\begin{bmatrix} W_4^0 & W_4^0 & W_4^0 & W_4^0 \\ W_4^0 & W_4^1 & W_4^2 & W_4^3 \\ W_4^0 & W_4^2 & W_4^0 & W_4^2 \\ W_4^0 & W_4^3 & W_4^2 & W_4^1 \end{bmatrix} = \begin{bmatrix} 1 & 1 & 1 & 1 \\ 1 & -j & -1 & j \\ 1 & -1 & 1 & -1 \\ 1 & j & -1 & -j \end{bmatrix}$
+
+#### Decomposition matrix
+
+- $\begin{bmatrix} W_4^0 & W_4^0 & W_4^0 & W_4^0 \\ W_4^0 & W_4^1 & W_4^2 & W_4^3 \\ W_4^0 & W_4^2 & W_4^0 & W_4^2 \\ W_4^0 & W_4^3 & W_4^2 & W_4^1 \end{bmatrix} = \begin{bmatrix} 1 & W_4^0 & 0 & 0 \\ 1 & W_4^2 & 0 & 0 \\ 0 & 0 & 1 & W_4^1 \\ 0 & 0 & 1 & W_4^3 \end{bmatrix} \begin{bmatrix} 1 & 0 & W_4^0 & 0 \\ 0 & 1 & 0 & W_4^0 \\ 1 & 0 & W_4^2 & 0 \\ 0 & 1 & 0 & W_4^2 \end{bmatrix}$
+
+#### Contoh 8 point
+
+- $W_8 = e^{-j\frac{2\pi}{8}} = e^{-j\frac{\pi}{4}} = \frac{\sqrt{2}}{2} - j\frac{\sqrt{2}}{2}$
+- $\begin{bmatrix}
+W_8^0 & W_8^0 & W_8^0 & W_8^0 & W_8^0 & W_8^0 & W_8^0 & W_8^0 \\
+W_8^0 & W_8^1 & W_8^2 & W_8^3 & W_8^4 & W_8^5 & W_8^6 & W_8^7 \\
+W_8^0 & W_8^2 & W_8^4 & W_8^6 & W_8^8 & W_8^{10} & W_8^{12} & W_8^{14} \\
+W_8^0 & W_8^3 & W_8^6 & W_8^9 & W_8^{12} & W_8^{15} & W_8^{18} & W_8^{21} \\
+W_8^0 & W_8^4 & W_8^8 & W_8^{12} & W_8^{16} & W_8^{20} & W_8^{24} & W_8^{28} \\
+W_8^0 & W_8^5 & W_8^{10} & W_8^{15} & W_8^{20} & W_8^{25} & W_8^{30} & W_8^{35} \\
+W_8^0 & W_8^6 & W_8^{12} & W_8^{18} & W_8^{24} & W_8^{30} & W_8^{36} & W_8^{42} \\
+W_8^0 & W_8^7 & W_8^{14} & W_8^{21} & W_8^{28} & W_8^{35} & W_8^{42} & W_8^{49} \\
+\end{bmatrix}$
+
+#### Contoh soal
+
+$f(t) = 5 + 2\cos(2\pi t - 90^\circ) + 3\cos(4\pi t)$
+
+- Sampling $f_s = 4Hz$
+- $f_s = 4Hz$
+- $T = \frac{1}{f_s} = \frac{1}{4} = 0.25s$
+- $N = 4$
+
+$f[n] = 5 + 2cos(\pi n/2 - 90^\circ) + 3cos(\pi n)$
+
+- $f[0] = 5 + 2cos(-90^\circ) + 3cos(0) = 5 + 0 + 3 = 8$
+- $f[1] = 5 + 2cos(0) + 3cos(\pi) = 5 + 2 + -3 = 4$
+- $f[2] = 5 + 2cos(90^\circ) + 3cos(2\pi) = 5 + 0 + 3 = 8$
+- $f[3] = 5 + 2cos(180^\circ) + 3cos(3\pi) = 5 - 2 - 3 = 0$
+
+$X[k] = W_4 f[n]$
+$\begin{bmatrix} X[0] \\ X[1] \\ X[2] \\ X[3] \end{bmatrix} = \begin{bmatrix} 1 & 1 & 1 & 1 \\ 1 & -j & -1 & j \\ 1 & -1 & 1 & -1 \\ 1 & j & -1 & -j \end{bmatrix} \begin{bmatrix} 8 \\ 4 \\ 8 \\ 0 \end{bmatrix} = \begin{bmatrix} 20 \\ -4j \\ 12 \\ 4j \end{bmatrix}$
+
+## Aplikasi DFT (Week 6)
